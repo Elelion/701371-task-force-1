@@ -1,36 +1,17 @@
-<?php
-
-use frontend\components\WomanSignupWidget;
-use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\helpers\Url;
-use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
-use frontend\components\MyNavWidget;
-use common\widgets\Alert;
-
-AppAsset::register($this);
-?>
-<?php $this->beginPage() ?>
-
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="ru">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+    <meta charset="UTF-8">
+    <title>TaskForce</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<?php $this->beginBody() ?>
 <div class="table-layout">
     <header class="page-header">
         <div class="main-container page-header__container">
             <div class="page-header__logo">
-                <a href="<?=Url::home(); ?>">
+                <a href="index.html">
                     <svg class="page-header__logo-image" id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1634 646.35">
                         <title>taskforce_logo2-01</title>
                         <g>
@@ -60,15 +41,15 @@ AppAsset::register($this);
             <div class="header__nav">
                 <ul class="header-nav__list site-list">
                     <li class="site-list__item">
-                        <a href="<?= Url::to(['/tasks/index']); ?>" class="link-regular">Задания</a>
+                        <a href="#">Задания</a>
                     </li>
                     <li class="site-list__item">
                         <a href="#">Исполнители</a>
                     </li>
                     <li class="site-list__item">
-                        <a href="<?= Url::to(['/tasks/create']); ?>" class="link-regular">Создать задание</a>
+                        <a href="#">Создать задание</a>
                     </li>
-                    <li class="site-list__item site-list__item--active">
+                    <li class="site-list__item">
                         <a>Мой профиль</a>
                     </li>
                 </ul>
@@ -105,33 +86,130 @@ AppAsset::register($this);
                          alt="Аватар пользователя">
                 </a>
                 <span class="header__account-name">
-                    <?= (Yii::$app->user->isGuest) ? 'Гость' : Yii::$app->user->identity->name; ?>
+                 Василий
              </span>
             </div>
             <div class="account__pop-up">
-                <?php
-                    echo MyNavWidget::widget([
-                        'options' => ['class' => 'account__pop-up-list'],
-                        'items' => [
-                            ['label' => 'Мои задания', 'url' => ['/tasks/index']],
-                            //['label' => 'Настройки', 'url' => ['/site/about']],
-                            [
-                                'label' => Yii::$app->user->isGuest ? 'Вход' : 'Выход',
-                                'url' => Yii::$app->user->isGuest  ? ['/site/login'] : ['/site/logout'],
-                            ],
-                        ],
-                    ]);
-                ?>
+                <ul class="account__pop-up-list">
+                    <li>
+                        <a href="#">Мои задания</a>
+                    </li>
+                    <li>
+                        <a href="#">Настройки</a>
+                    </li>
+                    <li>
+                        <a href="#">Выход</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
-
     <main class="page-main">
         <div class="main-container page-container">
-            <?= $content ?>
+           <section class="account__redaction-wrapper">
+            <h1>Редактирование настроек профиля</h1>
+               <form>
+                   <div class="account__redaction-section">
+                       <h3 class="div-line">Настройки аккаунта</h3>
+                       <div class="account__redaction-section-wrapper">
+                            <div class="account__redaction-avatar">
+                                <img src="./img/man-glasses.jpg" width="156" height="156">
+                                <a href="#" class="link-regular">Сменить аватар</a>
+                            </div>
+                            <div class="account__redaction">
+                                <div class="account__input account__input--name">
+                                    <label  for="200">Ваше имя</label>
+                                    <input class="input textarea"  id="200" name="" placeholder="Титов Денис" disabled>
+                                </div>
+                                <div class="account__input account__input--email" >
+                                    <label for="201">email</label>
+                                    <input class="input textarea" id="201" name="" placeholder="DenisT@bk.ru">
+                                </div>
+                                <div class="account__input account__input--address">
+                                    <label  for="202">Адрес</label>
+                                    <input class="input textarea"  id="202" name="" placeholder="Санкт-Петербург, Московский район">
+                                </div>
+                                <div class="account__input account__input--date">
+                                    <label for="203">День рождения</label>
+                                    <input id="203"  class="input-middle input input-date" type="text" placeholder="15.08.1987">
+                                </div>
+                                <div class="account__input account__input--info">
+                                    <label for="204">Информация о себе</label>
+                                    <textarea class="input textarea" rows="7" id="204" name="" placeholder="Place your text"></textarea>
+                                </div>
+                            </div>
+                       </div>
+                       <h3 class="div-line">Выберите свои специализации</h3>
+                       <div class="account__redaction-section-wrapper">
+                           <div class="search-task__categories account_checkbox">
+                               <input class="visually-hidden checkbox__input" id="205" type="checkbox" name="" value="">
+                               <label for="205">Курьерские услуги</label>
+                               <input class="visually-hidden checkbox__input" id="206" type="checkbox" name="" value=""d>
+                               <label  for="206">Ремонт транспорта</label>
+                           </div>
+                           <div class="search-task__categories account_checkbox">
+                               <input class="visually-hidden checkbox__input" id="207" type="checkbox" name="" value="">
+                               <label for="207">Грузоперевозки</label>
+                               <input class="visually-hidden checkbox__input" id="208" type="checkbox" name="" value="">
+                               <label  for="208">Удалённая помощь</label>
+                           </div>
+                           <div class="search-task__categories account_checkbox">
+                               <input class="visually-hidden checkbox__input" id="209" type="checkbox" name="" value="" checked>
+                               <label for="209">Перевод текстов</label>
+                               <input class="visually-hidden checkbox__input" id="210" type="checkbox" name="" value="">
+                               <label  for="210">Выезд на стрелку</label>
+                           </div>
+                       </div>
+                       <h3 class="div-line">Безопасность</h3>
+                       <div class="account__redaction-section-wrapper account__redaction">
+                           <div class="account__input">
+                               <label  for="211">Новый пароль</label>
+                               <input class="input textarea"  type="password" id="211" name="" value="moiparol">
+                           </div>
+                           <div class="account__input">
+                               <label for="212">Повтор пароля</label>
+                               <input class="input textarea" type="password" id="212" name="" value="moiparol">
+                           </div>
+                       </div>
+                       <h3 class="div-line">Контакты</h3>
+                       <div class="account__redaction-section-wrapper account__redaction">
+                           <div class="account__input">
+                               <label  for="213">Телефон</label>
+                               <input class="input textarea"  type="tel" id="213" name="" placeholder="8 (555) 187 44 87">
+                           </div>
+                           <div class="account__input">
+                               <label for="214">Skype</label>
+                               <input class="input textarea" type="password" id="214" name="" placeholder="DenisT">
+                           </div>
+                           <div class="account__input" >
+                               <label for="215">Другой мессенджер</label>
+                               <input class="input textarea" id="215" name="" placeholder="@DenisT">
+                           </div>
+                       </div>
+                       <h3 class="div-line">Настройки сайта</h3>
+                       <h4>Уведомления</h4>
+                       <div class="account__redaction-section-wrapper account_section--bottom">
+                           <div class="search-task__categories account_checkbox--bottom">
+                               <input class="visually-hidden checkbox__input" id="216" type="checkbox" name="" value="" checked>
+                               <label for="216">Новое сообщение</label>
+                               <input class="visually-hidden checkbox__input" id="217" type="checkbox" name="" value="" checked>
+                               <label  for="217">Действия по заданию</label>
+                               <input class="visually-hidden checkbox__input" id="218" type="checkbox" name="" value="" checked>
+                               <label for="218">Новый отзыв</label>
+                           </div>
+                           <div class="search-task__categories account_checkbox account_checkbox--secrecy">
+                               <input class="visually-hidden checkbox__input" id="219" type="checkbox" name="" value="">
+                               <label for="219">Показывать мои контакты только заказчику</label>
+                               <input class="visually-hidden checkbox__input" id="220" type="checkbox" name="" value="" checked>
+                               <label  for="220">Показывать мои контакты только заказчику</label>
+                           </div>
+                       </div>
+                    </div>
+                   <button class="button" type="submit">Сохранить изменения</button>
+               </form>
+           </section>
         </div>
     </main>
-
     <footer class="page-footer">
         <div class="main-container page-footer__container">
             <div class="page-footer__info">
@@ -147,7 +225,7 @@ AppAsset::register($this);
             <div class="page-footer__links">
                 <ul class="links__list">
                     <li class="links__item">
-                        <a href="<?= Url::to(['/tasks/index']); ?>" class="link-regular">Задания</a>
+                        <a href="">Задания</a>
                     </li>
                     <li class="links__item">
                         <a href="">Мой профиль</a>
@@ -159,7 +237,7 @@ AppAsset::register($this);
                         <a href="">Регистрация</a>
                     </li>
                     <li class="links__item">
-                        <a href="<?= Url::to(['/tasks/create']); ?>" class="link-regular">Создать задание</a>
+                        <a href="">Создать задание</a>
                     </li>
                     <li class="links__item">
                         <a href="">Справка</a>
@@ -174,15 +252,8 @@ AppAsset::register($this);
                          alt="Логотип HTML Academy">
                 </a>
             </div>
-
-            <?php if (isset($this->blocks['woman'])):?>
-                <?= $this->blocks['woman']; ?>
-            <?php endif; ?>
         </div>
     </footer>
 </div>
-
-<?php $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>

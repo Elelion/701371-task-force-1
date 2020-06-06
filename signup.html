@@ -1,36 +1,17 @@
-<?php
-
-use frontend\components\WomanSignupWidget;
-use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\helpers\Url;
-use yii\widgets\Breadcrumbs;
-use frontend\assets\AppAsset;
-use frontend\components\MyNavWidget;
-use common\widgets\Alert;
-
-AppAsset::register($this);
-?>
-<?php $this->beginPage() ?>
-
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="ru">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
-    <?php $this->head() ?>
+    <meta charset="UTF-8">
+    <title>TaskForce</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<?php $this->beginBody() ?>
 <div class="table-layout">
     <header class="page-header">
         <div class="main-container page-header__container">
             <div class="page-header__logo">
-                <a href="<?=Url::home(); ?>">
+                <a href="index.html">
                     <svg class="page-header__logo-image" id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1634 646.35">
                         <title>taskforce_logo2-01</title>
                         <g>
@@ -60,15 +41,15 @@ AppAsset::register($this);
             <div class="header__nav">
                 <ul class="header-nav__list site-list">
                     <li class="site-list__item">
-                        <a href="<?= Url::to(['/tasks/index']); ?>" class="link-regular">Задания</a>
+                        <a href="#">Задания</a>
                     </li>
                     <li class="site-list__item">
                         <a href="#">Исполнители</a>
                     </li>
                     <li class="site-list__item">
-                        <a href="<?= Url::to(['/tasks/create']); ?>" class="link-regular">Создать задание</a>
+                        <a href="#">Создать задание</a>
                     </li>
-                    <li class="site-list__item site-list__item--active">
+                    <li class="site-list__item">
                         <a>Мой профиль</a>
                     </li>
                 </ul>
@@ -105,33 +86,55 @@ AppAsset::register($this);
                          alt="Аватар пользователя">
                 </a>
                 <span class="header__account-name">
-                    <?= (Yii::$app->user->isGuest) ? 'Гость' : Yii::$app->user->identity->name; ?>
+                 Василий
              </span>
             </div>
             <div class="account__pop-up">
-                <?php
-                    echo MyNavWidget::widget([
-                        'options' => ['class' => 'account__pop-up-list'],
-                        'items' => [
-                            ['label' => 'Мои задания', 'url' => ['/tasks/index']],
-                            //['label' => 'Настройки', 'url' => ['/site/about']],
-                            [
-                                'label' => Yii::$app->user->isGuest ? 'Вход' : 'Выход',
-                                'url' => Yii::$app->user->isGuest  ? ['/site/login'] : ['/site/logout'],
-                            ],
-                        ],
-                    ]);
-                ?>
+                <ul class="account__pop-up-list">
+                    <li>
+                        <a href="#">Мои задания</a>
+                    </li>
+                    <li>
+                        <a href="#">Настройки</a>
+                    </li>
+                    <li>
+                        <a href="#">Выход</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </header>
-
     <main class="page-main">
         <div class="main-container page-container">
-            <?= $content ?>
+            <section class="registration__user">
+                <h1>Регистрация аккаунта</h1>
+                <div class="registration-wrapper">
+                    <form class="registration__user-form form-create">
+                        <label for="16">Электронная почта</label>
+                        <textarea class="input textarea" rows="1" id="16" name="" placeholder="kumarm@mail.ru"></textarea>
+                        <span>Введите валидный адрес электронной почты</span>
+                        <label for="17">Ваше имя</label>
+                        <textarea class="input textarea" rows="1" id="17" name="" placeholder="Мамедов Кумар"></textarea>
+                        <span>Введите ваше имя и фамилию</span>
+                        <label for="18">Город проживания</label>
+                        <select id="18" class="multiple-select input town-select registration-town" size="1" name="town[]">
+                            <option value="Moscow">Москва</option>
+                            <option selected value="SPB">Санкт-Петербург</option>
+                            <option value="Krasnodar">Краснодар</option>
+                            <option value="Irkutsk">Иркутск</option>
+                            <option value="Bladivostok">Владивосток</option>
+                        </select>
+                        <span>Укажите город, чтобы находить подходящие задачи</span>
+                        <label class="input-danger" for="19">Пароль</label>
+                        <input class="input textarea " type="password" id="19" name="">
+                        <span>Длина пароля от 8 символов</span>
+                        <button class="button button__registration" type="submit">Cоздать аккаунт</button>
+                    </form>
+                </div>
+            </section>
+
         </div>
     </main>
-
     <footer class="page-footer">
         <div class="main-container page-footer__container">
             <div class="page-footer__info">
@@ -147,7 +150,7 @@ AppAsset::register($this);
             <div class="page-footer__links">
                 <ul class="links__list">
                     <li class="links__item">
-                        <a href="<?= Url::to(['/tasks/index']); ?>" class="link-regular">Задания</a>
+                        <a href="">Задания</a>
                     </li>
                     <li class="links__item">
                         <a href="">Мой профиль</a>
@@ -159,7 +162,7 @@ AppAsset::register($this);
                         <a href="">Регистрация</a>
                     </li>
                     <li class="links__item">
-                        <a href="<?= Url::to(['/tasks/create']); ?>" class="link-regular">Создать задание</a>
+                        <a href="">Создать задание</a>
                     </li>
                     <li class="links__item">
                         <a href="">Справка</a>
@@ -175,14 +178,22 @@ AppAsset::register($this);
                 </a>
             </div>
 
-            <?php if (isset($this->blocks['woman'])):?>
-                <?= $this->blocks['woman']; ?>
-            <?php endif; ?>
+            <div class="clipart-woman">
+                <img src="./img/clipart-woman.png" width="238" height="450">
+            </div>
+            <div class="clipart-message">
+                <div class="clipart-message-text">
+                <h2>Знаете ли вы, что?</h2>
+                <p>После регистрации вам будет доступно более
+                    двух тысяч заданий из двадцати разных категорий.</p>
+                    <p>В среднем, наши исполнители зарабатывают
+                    от 500 рублей в час.</p>
+                </div>
+            </div>
+
         </div>
+
     </footer>
 </div>
-
-<?php $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage() ?>
