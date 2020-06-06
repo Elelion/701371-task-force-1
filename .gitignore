@@ -129,4 +129,6 @@ queries.sql
 .gitattributes
 .bowerrc
 .editorconfig
+
 task_force.sql
+index.php
