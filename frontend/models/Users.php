@@ -313,7 +313,6 @@ class Users extends ActiveRecord implements IdentityInterface
     }
 
     // NOTE: for login
-
     public static function findByUsername($username)
     {
         return static::findOne(['email' => $username]);
@@ -324,4 +323,16 @@ class Users extends ActiveRecord implements IdentityInterface
         return Yii::$app->security->validatePassword($password, $this->password);
     }
 
+
+    // NOTE: for roles
+
+    public function isCustomer()
+    {
+
+    }
+
+    public function isExecutor()
+    {
+
+    }
 }
