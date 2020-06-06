@@ -130,5 +130,8 @@ queries.sql
 .bowerrc
 .editorconfig
 
+#TODO: what is it ?
+/fonts
+/css
 task_force.sql
 index.php
